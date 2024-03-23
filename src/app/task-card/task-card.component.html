@@ -1,0 +1,59 @@
+<mat-card class="taskCard" >
+    <mat-card-header>
+      <mat-card-title>{{task.title}}</mat-card-title>
+      <mat-card-subtitle>
+        <mat-chip-set aria-label="status">
+          <mat-chip color="accent">
+            {{task.status}}
+          </mat-chip>
+        </mat-chip-set>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{task.description}}</p>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-icon-button matTooltip="Delete the task" color="warn" (click)="deleteTask(task)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Edit the task" color="accent" (click)="editTask(task)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <!-- <button mat-icon-button color="primary" (click)="editTask(task)">
+        <mat-icon>edit</mat-icon>
+      </button>   -->
+
+      <button mat-icon-button [matMenuTriggerFor]="editMenu" color="accent" matTooltip="Edit task options" aria-label="Edit task options">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #editMenu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="statusMenu">
+          <mat-icon>edit</mat-icon>
+          <span>Change status</span>
+        </button>
+        <!-- <button mat-menu-item disabled>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voice mail</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button> -->
+      </mat-menu>
+      <mat-menu #statusMenu="matMenu">
+        @for (status of statuses; track $index) {
+          @if (task.status != status) {
+            <button mat-menu-item (click)="changeTaskPriority(task, status)">
+              <mat-icon>add_task</mat-icon>
+              <span>{{status}}</span>
+            </button>
+          }
+        }
+      </mat-menu>
+      
+    </mat-card-actions>
+    <mat-card-footer>
+      <p>ID: {{task.id}}</p>
+    </mat-card-footer>
+</mat-card>

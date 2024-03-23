@@ -1,0 +1,3 @@
+@for (task of tasks; track $index) {
+    <app-task-card [task]="task" (onDeleteTask)="deleteTaskFromGrid(task)"></app-task-card>
+}
