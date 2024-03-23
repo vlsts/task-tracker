@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Inject } from '@angular/core';
+import { Component, type EventEmitter, Inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Task } from '../task';
+import type { Task } from '../task';
 import { TaskStatus } from '../task-status';
 
 @Component({
@@ -24,13 +24,13 @@ import { TaskStatus } from '../task-status';
   styleUrl: './add-task-dialog.component.scss'
 })
 export class AddTaskDialogComponent {
-  constructor (
+  constructor(
     @Inject(MAT_DIALOG_DATA) public addTaskEvent: EventEmitter<Task>,
-  ) {}
+  ) { }
 
   statuses: TaskStatus[] = Object.values(TaskStatus);
 
   addTask(id: string, title: string, description: string, status: TaskStatus) {
-    this.addTaskEvent.emit({id, title, description, status});
+    this.addTaskEvent.emit({ id, title, description, status });
   }
 }

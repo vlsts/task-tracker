@@ -4,7 +4,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Task } from '../task';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { EditDialogData } from './dialog-data';
+import type { EditDialogData } from './dialog-data';
 import { MatInputModule } from '@angular/material/input';
 import { TaskStatus } from '../task-status';
 import { MatButtonModule } from '@angular/material/button';

@@ -1,8 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Task } from '../task';
+import { Component, EventEmitter, type OnInit, Output } from '@angular/core';
+import type { Task } from '../task';
 import { Input } from '@angular/core';
 import { FilterComponent } from '../filter/filter.component';
-import { TaskStatus } from '../task-status';
+import type { TaskStatus } from '../task-status';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -19,7 +19,7 @@ export class TaskListComponent implements OnInit {
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
 
   handleSelectedStatus(status: TaskStatus) {
-    this.filteredTasks = this.tasks.filter(task => task.status == status);
+    this.filteredTasks = this.tasks.filter(task => task.status === status);
   }
 
   editTask(taskToEdit: Task) {
@@ -27,8 +27,8 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(taskToDelete: Task) {
-    this.tasks = this.tasks.filter(t => JSON.stringify(t) != JSON.stringify(taskToDelete));
-    this.filteredTasks = this.filteredTasks.filter(t => JSON.stringify(t) != JSON.stringify(taskToDelete));
+    this.tasks = this.tasks.filter(t => JSON.stringify(t) !== JSON.stringify(taskToDelete));
+    this.filteredTasks = this.filteredTasks.filter(t => JSON.stringify(t) !== JSON.stringify(taskToDelete));
     this.onDeleteTask.emit(taskToDelete);
   }
 

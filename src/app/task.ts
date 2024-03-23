@@ -1,4 +1,4 @@
-import { TaskStatus } from "./task-status";
+import type { TaskStatus } from "./task-status";
 
 export interface Task {
     id: string,

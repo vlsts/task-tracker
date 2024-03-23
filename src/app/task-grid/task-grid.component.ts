@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input } from '@angular/core';
-import { Task } from '../task';
+import type { Task } from '../task';
 import { NgFor } from '@angular/common';
 import { TaskCardComponent } from '../task-card/task-card.component';
 
@@ -14,7 +14,7 @@ export class TaskGridComponent {
   @Input() tasks: Task[];
 
   deleteTaskFromGrid(task: Task) {
-    this.tasks = this.tasks.filter(t => JSON.stringify(task) != JSON.stringify(task));
+    this.tasks = this.tasks.filter(t => JSON.stringify(task) !== JSON.stringify(t));
   }
   
 }

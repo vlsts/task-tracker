@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, type OnInit } from '@angular/core';
 import { TaskGridComponent } from '../task-grid/task-grid.component';
-import { Task } from '../task';
+import type { Task } from '../task';
 import { TaskStatus } from '../task-status';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { TaskListComponent } from '../task-list/task-list.component';
@@ -27,7 +27,7 @@ import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.compo
   styleUrl: './tasks-view.component.scss'
 })
 export class TasksViewComponent implements OnInit {
-  isList: boolean = false;
+  isList = false;
   statuses: TaskStatus[] = Object.values(TaskStatus);
   addTaskEvent: EventEmitter<Task> = new EventEmitter();
   tasks: Task[] = [
@@ -68,7 +68,7 @@ export class TasksViewComponent implements OnInit {
     status: TaskStatus.Done
   }];
 
-  constructor(public dialog: MatDialog) {
+  constructor(@Inject(MatDialog) public dialog) {
     this.addTaskEvent.subscribe(t => this.tasks.push(t));
   }
 
@@ -77,28 +77,28 @@ export class TasksViewComponent implements OnInit {
   }
 
   deleteTask(task: Task) {
-    this.tasks = this.tasks.filter(t => JSON.stringify(task) != JSON.stringify(t));
+    this.tasks = this.tasks.filter(t => JSON.stringify(task) !== JSON.stringify(t));
   }
 
   changeTaskPriority(task: Task, taskStatus: TaskStatus) {
     this.tasks.forEach(t => {
-      if (t == task) t.status = taskStatus;
+      if (t === task) t.status = taskStatus;
     });
   }
 
   editTask(task: Task) {
     this.tasks.forEach(t => {
-      if (t.id == task.id) t = task;
+      if (t.id === task.id) t = task;
     })
   }
 
   computeTaskPercentage(taskStatus: TaskStatus): number {
-    let taskCountStatus: number = this.tasks.filter(t => t.status == taskStatus).length;
+    const taskCountStatus: number = this.tasks.filter(t => t.status === taskStatus).length;
     return (taskCountStatus / this.tasks.length)*100; 
   }
 
   addTask() {
-    let dialog = this.dialog.open(AddTaskDialogComponent, {
+    const dialog = this.dialog.open(AddTaskDialogComponent, {
       data: this.addTaskEvent
     });
   }
