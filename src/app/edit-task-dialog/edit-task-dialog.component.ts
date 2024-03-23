@@ -2,12 +2,11 @@ import { Component, Inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Task } from '../task';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import type { EditDialogData } from './dialog-data';
 import { MatInputModule } from '@angular/material/input';
 import { TaskStatus } from '../task-status';
 import { MatButtonModule } from '@angular/material/button';
+import { Task } from '../task';
 
 @Component({
   selector: 'app-edit-task-dialog',
@@ -28,15 +27,12 @@ export class EditTaskDialogComponent {
   statuses: TaskStatus[] = Object.values(TaskStatus);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: EditDialogData,
+    @Inject(MAT_DIALOG_DATA) public task: Task,
   ) {}
 
   edit(title: string, description: string, status: TaskStatus) { 
-    this.data.task.title = title;
-    this.data.task.description = description;
-    this.data.task.status = status
-
-    this.data.editEvent.emit(this.data.task);
-
+    this.task.title = title;
+    this.task.description = description;
+    this.task.status = status
    }
 }

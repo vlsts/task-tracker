@@ -26,10 +26,9 @@ export class TaskListComponent implements OnInit {
     console.log(taskToEdit);
   }
 
-  deleteTask(taskToDelete: Task) {
-    this.tasks = this.tasks.filter(t => JSON.stringify(t) !== JSON.stringify(taskToDelete));
-    this.filteredTasks = this.filteredTasks.filter(t => JSON.stringify(t) !== JSON.stringify(taskToDelete));
-    this.onDeleteTask.emit(taskToDelete);
+  deleteTask(task: Task) {
+    this.onDeleteTask.emit(task);
+    this.filteredTasks = this.filteredTasks.filter(t => t.id !== task.id)
   }
 
   ngOnInit(): void {

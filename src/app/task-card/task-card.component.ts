@@ -47,38 +47,12 @@ import { EditTaskDialogComponent } from "../edit-task-dialog/edit-task-dialog.co
 	templateUrl: "./task-card.component.html",
 	styleUrl: "./task-card.component.scss",
 })
-export class TaskCardComponent implements OnInit {
+export class TaskCardComponent {
 	@Input() task: Task;
 	@Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
-	@Output() onChangeTaskPriority: EventEmitter<TaskPriorityChanger> =
-		new EventEmitter();
-	@Output() onTaskEdit: EventEmitter<Task> = new EventEmitter();
+	@Output() onEditTask: EventEmitter<Task> = new EventEmitter();
 	statuses: TaskStatus[] = Object.values(TaskStatus);
 
   // @Inject(MatDialog) dialog: MatDialog;
 	constructor(@Inject(MatDialog) public dialog) {}
-
-	ngOnInit(): void {
-		this.onTaskEdit = new EventEmitter();
-	}
-
-	editTask(taskToEdit: Task) {
-		this.dialog.open(EditTaskDialogComponent, {
-			data: {
-				task: taskToEdit,
-				editEvent: this.onTaskEdit,
-			},
-		});
-	}
-
-	deleteTask(taskToDelete: Task) {
-		this.onDeleteTask.emit(taskToDelete);
-	}
-
-	changeTaskPriority(taskToChange: Task, newStatus: TaskStatus) {
-		this.onChangeTaskPriority.emit({
-			task: taskToChange,
-			newStatus: newStatus,
-		});
-	}
 }

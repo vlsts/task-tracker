@@ -11,8 +11,8 @@
 </div>
 
 @if (isList) {
-  <app-task-list [tasks]="tasks" (onDeleteTask)="deleteTask($event)"></app-task-list>
+<app-task-list [tasks]="tasks" (onDeleteTask)="deleteTask($event)"></app-task-list>
 }
 @else {
-
+<app-task-grid [tasks]="tasks" (onDeleteTask)="deleteTask($event)" (onEditTask)="editTask($event)"></app-task-grid>
 }

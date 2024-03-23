@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import type { Task } from '../task';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { TaskStatus } from '../task-status';
@@ -13,6 +13,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 })
 export class TaskGridComponent {
   @Input() tasks: Task[];
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onEditTask: EventEmitter<Task> = new EventEmitter();
   statuses: TaskStatus[] = Object.values(TaskStatus);
 
   deleteTaskFromGrid(task: Task) {

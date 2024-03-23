@@ -1,0 +1,17 @@
+.task-columns {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+.task-column {
+  flex: 1;
+  margin: 10px;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+mat-progress-bar {
+  margin-bottom: 10px;
+}

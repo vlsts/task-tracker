@@ -1,27 +1,27 @@
-
 <form id="edit-task-form">
-  <h3>Editing task {{data.task.title}}</h3>
+  <h3>Editing task {{task.title}}</h3>
   <mat-form-field appearance="outline">
     <mat-label>ID</mat-label>
-    <input matInput disabled [value]="data.task.id"/>
+    <input matInput disabled [value]="task.id" />
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
-    <input matInput [value]="data.task.title" #titleInput>
+    <input matInput [value]="task.title" #titleInput>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
-    <input matInput [value]="data.task.description" #descriptionInput>
+    <input matInput [value]="task.description" #descriptionInput>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Status</mat-label>
-    <mat-select #statusDropdown [value]="data.task.status">
+    <mat-select #statusDropdown [value]="task.status">
       @for (status of statuses; track $index) {
-        <mat-option [value]="status">{{status}}</mat-option>
-      }      
+      <mat-option [value]="status">{{status}}</mat-option>
+      }
     </mat-select>
   </mat-form-field>
   <mat-dialog-actions>
-    <button mat-flat-button mat-dialog-close color="primary" (click)="edit(titleInput.value, descriptionInput.value, statusDropdown.value)">Save task</button>
+    <button mat-flat-button mat-dialog-close color="primary"
+      (click)="edit(titleInput.value, descriptionInput.value, statusDropdown.value)">Save task</button>
   </mat-dialog-actions>
 </form>
