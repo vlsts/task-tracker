@@ -92,11 +92,6 @@ export class TasksViewComponent implements OnInit {
     })
   }
 
-  computeTaskPercentage(taskStatus: TaskStatus): number {
-    const taskCountStatus: number = this.tasks.filter(t => t.status === taskStatus).length;
-    return (taskCountStatus / this.tasks.length)*100; 
-  }
-
   addTask() {
     const dialog = this.dialog.open(AddTaskDialogComponent, {
       data: this.addTaskEvent

@@ -1,3 +1,13 @@
-@for (task of tasks; track $index) {
-    <app-task-card [task]="task" (onDeleteTask)="deleteTaskFromGrid(task)"></app-task-card>
-}
+<div class="task-columns">
+    @for (status of statuses; track $index) {
+      <div class="task-column">
+        <h2>{{status.toString()}}</h2>
+        <mat-progress-bar mode="determinate" value="{{computeTaskPercentage(status)}}"></mat-progress-bar>
+        @for (task of tasks; track $index) {
+          @if (task.status === status) {
+            <!-- <app-task-card [task]="task" (onTaskEdit)="editTask($event)" (onDeleteTask)="deleteTask(task)" (onChangeTaskPriority)="changeTaskPriority($event.task, $event.newStatus)"></app-task-card> -->
+          }
+        }
+      </div>
+    }
+  </div>
