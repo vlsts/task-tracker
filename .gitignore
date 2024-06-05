@@ -48,3 +48,6 @@ package-lock.json
 .vscode/*
 */.angular/*
 */.vscode/*
+**/bin/*
+**/.vs/*
+**/obj/*
