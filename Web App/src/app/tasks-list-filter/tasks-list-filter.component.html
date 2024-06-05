@@ -1,0 +1,9 @@
+<mat-tab-group backgroundColor="primary" selectedIndex="null"  (selectedTabChange)="selectStatus(service.statuses[$event.index])">
+    @for (status of service.statuses; track $index) {
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <div class="mat-tab-task-name">{{status}}</div>
+            </ng-template>
+        </mat-tab>
+    }
+</mat-tab-group>

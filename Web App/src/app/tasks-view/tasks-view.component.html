@@ -1,0 +1,20 @@
+<p>
+    {{notificationMessage}}
+</p>
+<div class="buttons">
+    @if (!isList) {
+      <button mat-button [disableRipple]="true" (click)="isList = true"><mat-icon>grid_off</mat-icon></button>
+    }
+    @else {
+      <button mat-button [disableRipple]="true" (click)="isList = false"><mat-icon>grid_on</mat-icon></button>
+    }
+</div>
+  @if (isList) {
+    <app-tasks-list></app-tasks-list>
+  }
+  @else {
+    <app-tasks-grid></app-tasks-grid>
+  }
+
+  
+  

@@ -46,3 +46,5 @@ bun.lockb
 package-lock.json
 *.zip
 .vscode/*
+*/.angular/*
+*/.vscode/*

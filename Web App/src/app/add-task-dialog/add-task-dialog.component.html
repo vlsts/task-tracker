@@ -1,0 +1,51 @@
+<div id="container">
+    <mat-card>
+        <mat-card-content>
+            <form (submit)="onSubmit()">
+                <mat-form-field class="form-field">
+                    <input
+                        matInput
+                        placeholder="Task Name"
+                        [(ngModel)]="taskName"
+                        name="taskName"
+                        required
+                    />
+                </mat-form-field>
+    
+                <mat-form-field class="form-field">
+                    <textarea
+                        matInput
+                        placeholder="Description"
+                        [(ngModel)]="taskDescription"
+                        name="taskDescription"
+                        required
+                        rows="4"
+                    ></textarea>
+                </mat-form-field>
+    
+                <mat-form-field class="form-field">
+                    <mat-label>Status</mat-label>
+                    <mat-select [(ngModel)]="taskStatus" name="taskStatus" required>
+                        @for (status of service.statuses; track status) {
+                            <mat-option [value]="status">{{ status.toString() }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field class="form-field">
+                    <input
+                        matInput
+                        placeholder="Assigned To"
+                        [(ngModel)]="taskAssignedTo"
+                        name="assignedTo"
+                        required
+                    />
+                </mat-form-field>
+                <div class="buttons">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!validForm()">Submit</button>
+                    <button mat-raised-button color="warn" type="button" routerLink="/">Cancel</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
